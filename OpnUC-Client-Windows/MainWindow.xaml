@@ -4,9 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpnUC_Client_Windows"
+        xmlns:vbu="clr-namespace:VistaBridge.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button HorizontalAlignment="Left" Margin="42,73,0,0" VerticalAlignment="Top" Click="Button_Click">
+            <StackPanel Orientation="Horizontal" Margin="3,0">
+                <Image Source="{x:Static vbu:StockIcons.Shield}" Width="16" Height="20" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                <TextBlock Text="レジストリに登録" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+
     </Grid>
 </Window>
