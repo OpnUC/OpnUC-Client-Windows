@@ -58,5 +58,17 @@ namespace OpnUC_Client_Windows.Properties {
                 this["ApiUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WebSocketUrl {
+            get {
+                return ((string)(this["WebSocketUrl"]));
+            }
+            set {
+                this["WebSocketUrl"] = value;
+            }
+        }
     }
 }

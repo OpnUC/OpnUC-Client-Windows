@@ -24,14 +24,17 @@ namespace OpnUC_Client_Windows_RegistryTool
         }
 
         /// <summary>
-        /// 
+        /// URLスキームを登録する
         /// </summary>
-        /// <param name="scheme"></param>
-        /// <param name="proto"></param>
-        /// <param name="path_exe"></param>
-        /// <param name="path_icon"></param>
+        /// <param name="scheme">スキーム</param>
+        /// <param name="proto">プロトコル</param>
+        /// <param name="path_exe">実行ファイル</param>
+        /// <param name="path_icon">アイコン</param>
         private static void RegisterUriSchemeShellHandler(string scheme, string proto, string path_exe, string path_icon = null)
         {
+
+            // https://pf-j.sakura.ne.jp/program/winreg/local.htm
+            // http://www.officedaytime.com/tips/vistaprogram.htm
 
             path_icon = path_icon ?? path_exe;
 

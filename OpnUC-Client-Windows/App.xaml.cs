@@ -36,12 +36,13 @@ namespace OpnUC_Client_Windows
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            // 画面を閉じてもアプリケーションを終了しないようにする
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            // タスクトレイアイコンを生成
             this.notifyIcon = new NotifyIconWrapper();
 
-            Application.Current.Properties["WebAPI"] = new WebAPI();
-
-            //IPC確立・兼・二重起動確認
+            // IPC確立・兼・二重起動確認
             ipcMgr = new IpcManager(AppGuid);
             ipcMgr.Connect(this, IpcCallback_ClientStarted);
 
@@ -51,7 +52,7 @@ namespace OpnUC_Client_Windows
 
                 if (args.Length > 1)
                 {
-                    onCall(args[1]);
+                    Library.SharedFnc.OnCall(args[1]);
                 }
             }
             else
@@ -67,33 +68,29 @@ namespace OpnUC_Client_Windows
         /// <param name="e">イベントデータ を格納している ExitEventArgs</param>
         protected override void OnExit(ExitEventArgs e)
         {
+
             base.OnExit(e);
-            this.notifyIcon.Dispose();
-        }
 
-
-        //2個目の本アプリ起動により呼び出される
-        private void IpcCallback_ClientStarted()
-        {
-            //コマンドライン引数を利用する何らかの処理へ
-            var args = ipcMgr.ReceiveArgs();
-            this.onCall(args[1]);
-        }
-
-        private void onCall(string telNumber)
-        {
-
-            Regex re = new Regex(@"[^0-9]");
-            telNumber = re.Replace(telNumber, "");
-
-            if (MessageBox.Show(telNumber + "に発信します。よろしいですか？",
-                "確認", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
+            // タスクトレイアイコンを破棄
+            if(this.notifyIcon != null)
             {
-                var a = new WebAPI();
-                //a.onCall(telNumber);
+                this.notifyIcon.Dispose();
             }
 
         }
+
+        /// <summary>
+        /// 重複起動したアプリケーションから呼ばれてる関数
+        /// </summary>
+        private void IpcCallback_ClientStarted()
+        {
+            // コマンドライン引数を取得
+            var args = ipcMgr.ReceiveArgs();
+
+            // 発信処理
+            Library.SharedFnc.OnCall(args[1]);
+        }
+      
 
     }
 }

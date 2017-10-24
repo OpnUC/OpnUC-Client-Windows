@@ -76,7 +76,7 @@ namespace OpnUC_Client_Windows
             if (Application.Current.MainWindow == null)
             {
                 // MainWindow を生成、表示
-                var wnd = new MainWindow();
+                var wnd = new Views.MainWindow();
                 wnd.Show();
             }
             else

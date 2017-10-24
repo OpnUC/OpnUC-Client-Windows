@@ -1,0 +1,29 @@
+﻿<Controls:MetroWindow x:Class="OpnUC_Client_Windows.Views.About"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      mc:Ignorable="d"
+                      Title="バージョン情報" Height="200" Width="400" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock LineHeight="16" Padding="4" DataContext="{Binding FileVersionInfo}">
+            <TextBlock.Inlines>
+                製品名：
+                <LineBreak/>
+                <TextBlock Margin="8,0,0,4" Text="{Binding ProductName}"/>
+                <LineBreak/>
+                製品バージョン番号：
+                <LineBreak/>
+                <TextBlock Margin="8,0,0,4" Text="{Binding ProductVersion}"/>
+                <LineBreak/>
+                著作権情報：
+                <LineBreak/>
+                <TextBlock Margin="8,0,0,4" Text="{Binding LegalCopyright}"/>
+                <LineBreak/>
+            </TextBlock.Inlines>
+        </TextBlock>
+        <Button Content="閉じる" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" 
+                Click="btnClose_Click"/>
+    </Grid>
+</Controls:MetroWindow>

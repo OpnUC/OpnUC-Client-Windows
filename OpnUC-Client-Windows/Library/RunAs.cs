@@ -3,41 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace OpnUC_Client_Windows
+namespace OpnUC_Client_Windows.Library
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window
+    public class RunAs
     {
-        private string StartupPath = "";
-
-        public MainWindow()
-        {
-            string exePath = Environment.GetCommandLineArgs()[0];
-            string exeFullPath = System.IO.Path.GetFullPath(exePath);
-            this.StartupPath = System.IO.Path.GetDirectoryName(exeFullPath);
-
-            InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string path_exe = String.Format(@"""{0}""", System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            RunElevated(System.IO.Path.Combine(StartupPath, "OpnUC-Client-Windows-RegistryTool.exe"), path_exe, true);
-
-        }
 
         /// <summary>
         /// 管理者権限が必要なプログラムを起動する
@@ -50,6 +20,7 @@ namespace OpnUC_Client_Windows
         /// 「ユーザーアカウント制御」ダイアログでキャンセルされた時はfalse。</returns>
         public static bool RunElevated(string fileName, string arguments, bool waitExit)
         {
+
             //プログラムがあるか調べる
             if (!System.IO.File.Exists(fileName))
             {
@@ -86,5 +57,6 @@ namespace OpnUC_Client_Windows
 
             return true;
         }
+
     }
 }
